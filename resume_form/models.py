@@ -6,9 +6,9 @@ def validate_file_size(file):
     if file.size > max_size:
         raise ValidationError("O arquivo deve ter no máximo 1MB.")
 
-class Resume(models.Model):
+class ResumeSubmit(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email = models.EmailField(max_length=50)
     celphone = models.CharField(max_length=15)
     position = models.CharField(max_length=100)
     education = models.CharField(max_length=50, choices=[
@@ -19,6 +19,8 @@ class Resume(models.Model):
     ])
     observations = models.TextField(blank=True)
     file = models.FileField(upload_to='curriculos/', validators=[validate_file_size])
+    date = models.DateTimeField(auto_now_add=True)
+    ip = models.GenericIPAddressField()
 
     def __str__(self):
         return self.name
