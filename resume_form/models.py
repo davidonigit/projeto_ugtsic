@@ -9,7 +9,7 @@ def validate_file_size(file):
 class ResumeSubmit(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    celphone = models.CharField(max_length=15)
+    phone = models.CharField(max_length=15)
     position = models.CharField(max_length=50)
     education = models.CharField(max_length=50, choices=[
         ('fundamental', 'Ensino Fundamental'),

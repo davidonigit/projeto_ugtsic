@@ -3,40 +3,33 @@ from django.conf import settings
 from django.shortcuts import render
 from django.core.exceptions import ValidationError
 from .models import ResumeSubmit
+from .forms import ResumeForm
 
 def home(request):
-    if request.method == "GET":
-        return render(request, 'home.html')
-    elif request.method == "POST":
-        resume = ResumeSubmit(
-            name = request.POST.get('name'),
-            email = request.POST.get('email'),
-            celphone = request.POST.get('celphone'),
-            position = request.POST.get('position'),
-            education = request.POST.get('education'),
-            observations = request.POST.get('observations'),
-            file = request.FILES.get('file'),
-            ip = get_client_ip(request),
-        )
-        try:
-            resume.full_clean()
+    if request.method == "POST":
+        form = ResumeForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            print('is valid')
+            resume = form.save(commit=False)
+            resume.ip = get_client_ip(request)
             resume.save()
 
-            subject='Confirmação de Submissão do Currículo'
-            message=f'''Olá {resume.name},
+            subject = 'Confirmação de Submissão do Currículo'
+            message = f'''Olá {resume.name},
 Confirmamos o recebimento da sua aplicação para a posição de {resume.position}.
             
 Dados enviados:
 Nome: {resume.name}
 Email: {resume.email}
-Telefone: {resume.celphone}
+Telefone: {resume.phone}
 Cargo: {resume.position}
 Escolaridade: {resume.education}
 Observações: {resume.observations}
 
 Segue o currículo em anexo.
 '''
-            recipient_list=[resume.email]
+            recipient_list = [resume.email]
 
             email = EmailMessage(
                 subject,
@@ -48,8 +41,14 @@ Segue o currículo em anexo.
             email.send(fail_silently=False)
 
             return render(request, 'submit_success.html')
-        except ValidationError as e:
-            return render(request, 'home.html', {'errors': e.message_dict})  
+        else:
+            print('not valid')
+            print(form.errors)
+            return render(request, 'home.html', {'form': form})
+    else:
+        form = ResumeForm()
+    
+    return render(request, 'home.html', {'form': form})
 
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')

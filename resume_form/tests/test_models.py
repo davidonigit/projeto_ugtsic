@@ -7,7 +7,7 @@ class TestModels(TestCase):
         self.submit = ResumeSubmit.objects.create(
             name = 'test',
             email = 'test@gmail.com',
-            celphone = '1234',
+            phone = '1234',
             position = 'test',
             education = 'medio',
             observations = 'none',

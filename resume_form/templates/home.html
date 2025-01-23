@@ -11,41 +11,43 @@
 
     <h2>Formulário de Envio de Currículo</h2>
 
-    {% if errors %}
+    {% if form.errors %}
         <div style="color: red;">
             <ul>
-                {% for field, error_list in errors.items %}
-                    {% for error in error_list %}
-                        <li><strong>{{ field }}:</strong> {{ error }}</li>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
                     {% endfor %}
                 {% endfor %}
             </ul>
         </div>
     {% endif %}
 
-    <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-        <label for="name" class="required">Nome:</label>
-        <input type="text" id="name" name="name" required maxlength="50"><br><br>
+    <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" value="{{ form.name.value|default_if_none:'' }}" required maxlength="50"><br><br>
 
         <label for="email" class="required">E-mail:</label>
-        <input type="email" id="email" name="email" required maxlength="50"><br><br>
+        <input type="email" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" required maxlength="50"><br><br>
 
-        <label for="celphone" class="required">Telefone:</label>
-        <input type="tel" id="celphone" name="celphone" required maxlength="15" pattern="\d*" title="Digite apenas números."><br><br>
+        <label for="phone" class="required">Telefone:</label>
+        <input type="tel" id="phone" name="phone" value="{{ form.phone.value|default_if_none:'' }}" required maxlength="15" pattern="\d*" title="Digite apenas números."><br><br>
 
         <label for="position" class="required">Cargo Desejado:</label>
-        <input type="text" id="position" name="position" required maxlength="50"><br><br>
+        <input type="text" id="position" name="position" value="{{ form.position.value|default_if_none:'' }}" required maxlength="50"><br><br>
 
         <label for="education" class="required">Escolaridade:</label>
         <select id="education" name="education">
-            <option value="fundamental">Ensino Fundamental</option>
-            <option value="medio">Ensino Médio</option>
-            <option value="superior">Ensino Superior</option>
-            <option value="pos">Pós-graduação</option>
+            <option value="fundamental" {% if form.education.value == 'fundamental' %}selected{% endif %}>Ensino Fundamental</option>
+            <option value="medio" {% if form.education.value == 'medio' %}selected{% endif %}>Ensino Médio</option>
+            <option value="superior" {% if form.education.value == 'superior' %}selected{% endif %}>Ensino Superior</option>
+            <option value="pos" {% if form.education.value == 'pos' %}selected{% endif %}>Pós-graduação</option>
         </select><br><br>
 
         <label for="observations">Observações:</label>
-        <textarea id="observations" name="observations" rows="4" cols="50" maxlength="100"></textarea><br><br>
+        <textarea id="observations" name="observations" rows="4" cols="50" maxlength="100">{{ form.observations.value|default_if_none:'' }}</textarea><br><br>
 
         <label for="file" class="required">Currículo (PDF, DOC, DOCX) (Tamanho máximo: 1MB): </label>
         <input type="file" id="file" name="file" accept=".pdf, .doc, .docx" required><br><br>
