@@ -11,7 +11,7 @@ class TestModels(TestCase):
             position = 'test',
             education = 'medio',
             observations = 'none',
-            file = 'D:\PythonDev\projeto_ugtsic\curriculos\Test.pdf',
+            file = '.\curriculos\Test.pdf',
             ip = '1.0.0.1',
         )
 
