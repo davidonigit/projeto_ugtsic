@@ -1,6 +1,8 @@
+from django.core.mail import EmailMessage
+from django.conf import settings
 from django.shortcuts import render
-from .models import ResumeSubmit
 from django.core.exceptions import ValidationError
+from .models import ResumeSubmit
 
 def home(request):
     if request.method == "GET":
@@ -19,6 +21,32 @@ def home(request):
         try:
             resume.full_clean()
             resume.save()
+
+            subject='Confirmação de Submissão do Currículo'
+            message=f'''Olá {resume.name},
+Confirmamos o recebimento da sua aplicação para a posição de {resume.position}.
+            
+Dados enviados:
+Nome: {resume.name}
+Email: {resume.email}
+Telefone: {resume.celphone}
+Cargo: {resume.position}
+Escolaridade: {resume.education}
+Observações: {resume.observations}
+
+Segue o currículo em anexo.
+'''
+            recipient_list=[resume.email]
+
+            email = EmailMessage(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                recipient_list
+            )
+            email.attach(resume.file.name, resume.file.read())
+            email.send(fail_silently=False)
+
             return render(request, 'submit_success.html')
         except ValidationError as e:
             return render(request, 'home.html', {'errors': e.message_dict})  
