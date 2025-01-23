@@ -1,9 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulário Curriculo</title>
+    <link rel="stylesheet" href="{% static 'resume_form/css/styles.css' %}">
 </head>
 <body>
 
@@ -22,19 +24,19 @@
     {% endif %}
 
     <form action="{% url 'home' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" required><br><br>
+        <label for="name" class="required">Nome:</label>
+        <input type="text" id="name" name="name" required maxlength="50"><br><br>
 
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="email" class="required">E-mail:</label>
+        <input type="email" id="email" name="email" required maxlength="50"><br><br>
 
-        <label for="celphone">Telefone:</label>
-        <input type="tel" id="celphone" name="celphone" required><br><br>
+        <label for="celphone" class="required">Telefone:</label>
+        <input type="tel" id="celphone" name="celphone" required maxlength="15" pattern="\d*" title="Digite apenas números."><br><br>
 
-        <label for="position">Cargo Desejado:</label>
-        <input type="text" id="position" name="position"><br><br>
+        <label for="position" class="required">Cargo Desejado:</label>
+        <input type="text" id="position" name="position" required maxlength="50"><br><br>
 
-        <label for="education">Escolaridade:</label>
+        <label for="education" class="required">Escolaridade:</label>
         <select id="education" name="education">
             <option value="fundamental">Ensino Fundamental</option>
             <option value="medio">Ensino Médio</option>
@@ -43,9 +45,9 @@
         </select><br><br>
 
         <label for="observations">Observações:</label>
-        <textarea id="observations" name="observations" rows="4" cols="50"></textarea><br><br>
+        <textarea id="observations" name="observations" rows="4" cols="50" maxlength="100"></textarea><br><br>
 
-        <label for="file">Currículo (PDF, DOC, DOCX):</label>
+        <label for="file" class="required">Currículo (PDF, DOC, DOCX) (Tamanho máximo: 1MB): </label>
         <input type="file" id="file" name="file" accept=".pdf, .doc, .docx" required><br><br>
 
         <input type="submit" value="Enviar Currículo">

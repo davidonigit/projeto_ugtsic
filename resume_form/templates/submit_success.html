@@ -1,16 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sucesso!</title>
+    <link rel="stylesheet" href="{% static 'resume_form/css/styles.css' %}">
 </head>
 <body>
 
     <h2>Currículo Enviado com Sucesso!</h2>
+    <h3>Foi enviada uma cópia do formulário para o seu email.</h3>
     
     <form action="{% url 'home' %}" method="get">
-        <button type="submit">Enviar Novo Currículo</button>
+        <input type="submit" value="Enviar Novo Currículo"></button>
     </form>
 
 </body>
