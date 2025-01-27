@@ -10,7 +10,6 @@ def home(request):
         form = ResumeForm(request.POST, request.FILES)
         
         if form.is_valid():
-            print('is valid')
             resume = form.save(commit=False)
             resume.ip = get_client_ip(request)
             resume.save()
@@ -42,8 +41,6 @@ Segue o currículo em anexo.
 
             return render(request, 'submit_success.html')
         else:
-            print('not valid')
-            print(form.errors)
             return render(request, 'home.html', {'form': form})
     else:
         form = ResumeForm()
