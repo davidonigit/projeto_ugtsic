@@ -23,7 +23,7 @@ Nome: {resume.name}
 Email: {resume.email}
 Telefone: {resume.phone}
 Cargo: {resume.position}
-Escolaridade: {resume.education}
+Escolaridade: {resume.get_education_display()}
 Observações: {resume.observations}
 
 Segue o currículo em anexo.
