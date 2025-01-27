@@ -5,7 +5,7 @@
  
 Será necessário estar instalado na máquina o Python. Versão utilizada para desenvolvimento Python 3.13.1.
 
-Acesse a pasta do projeto via cmd/powershel e crie o ambiente virtual: 
+Acesse a pasta do projeto via PowerShel e crie o ambiente virtual: 
 
 - cd caminho/do/projeto
 
@@ -14,6 +14,10 @@ Acesse a pasta do projeto via cmd/powershel e crie o ambiente virtual:
 Ative o ambiente virtual (Windows):
 
 - .\venv\Scripts\activate
+
+OBS.: Caso tenha problemas de segurança no Windows para executar esse comando no PowerShel, será necessário abrir o PowerShel como administrador e executar o comando:
+
+- Set-ExecutionPolicy RemoteSigned
 
 Requirements (pip freeze):
 
@@ -32,7 +36,7 @@ Na pasta raiz do projeto, crie um arquivo '.env'. Nela configure as seguintes va
 - EMAIL_USER=seu_email@gmail.com
 - EMAIL_APP_PASSWORD=senha do app gmail
 
-Email_app_password pode ser uma senha de app criada pelo gmail ou a senha padrão do gmail. Essa senha não será compartilhada com o sistema.
+Email_app_password deve ser uma senha de app criada pelo gmail(myaccount.google > procure por Senha de App > crie uma nova senha de app). Essa senha não será compartilhada com o sistema.
 
 Rodar o servidor na máquina(Windows):
 
