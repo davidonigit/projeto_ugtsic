@@ -5,9 +5,13 @@
  
 Será necessário estar instalado na máquina o Python. Versão utilizada para desenvolvimento Python 3.13.1.
 
-Acesse a pasta do projeto via cmd/powershel e crie o ambiente virtual: python -m venv venv
+Acesse a pasta do projeto via cmd/powershel e crie o ambiente virtual: 
 
-Ative o ambiente virtual (Windows): .\venv\Scripts\activate
+- python -m venv venv
+
+Ative o ambiente virtual (Windows):
+
+- .\venv\Scripts\activate
 
 Requirements (pip freeze):
 
