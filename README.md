@@ -10,23 +10,27 @@ Acesse a pasta do projeto via cmd/powershel e crie o ambiente virtual: python -m
 Ative o ambiente virtual (Windows): .\venv\Scripts\activate
 
 Requirements (pip freeze):
-asgiref==3.8.1
-Django==5.1.5
-python-dotenv==1.0.1
-sqlparse==0.5.3
-tzdata==2025.1
+
+- asgiref==3.8.1
+- Django==5.1.5
+- python-dotenv==1.0.1
+- sqlparse==0.5.3
+- tzdata==2025.1
 
 Instale as dependências(Django e dotenv): 
-pip install django
-pip install python-dotenv
+
+- pip install django
+- pip install python-dotenv
 
 Na pasta raiz do projeto, crie um arquivo '.env'. Nela configure as seguintes variáveis:
-EMAIL_USER=seu_email@gmail.com
-EMAIL_APP_PASSWORD=senha do app gmail
+- EMAIL_USER=seu_email@gmail.com
+- EMAIL_APP_PASSWORD=senha do app gmail
 
 Email_app_password pode ser uma senha de app criada pelo gmail ou a senha padrão do gmail. Essa senha não será compartilhada com o sistema.
 
-Rodar o servidor na máquina(Windows): python manage.py runserver
+Rodar o servidor na máquina(Windows):
+
+- python manage.py runserver
 
 Acesse o formulário pelo navegador: http://127.0.0.1:8000/
 
