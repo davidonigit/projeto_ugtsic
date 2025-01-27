@@ -52,7 +52,9 @@ Foram feitos testes iniciais para Views, Models e Forms.
 
 Para executar os testes, certifique-se que existe o arquivo "Test.pdf" na pasta '/curriculos'. Esse arquivo será necessário para o teste do Model.
 
-O comando para executar os testes é: python manage.py test resume_form
+O comando para executar os testes é: 
+
+- python manage.py test resume_form
 
 Serão executados 5 testes(1 na view, 2 no model e 2 no form).
  
