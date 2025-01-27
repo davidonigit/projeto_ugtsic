@@ -36,7 +36,9 @@ Na pasta raiz do projeto, crie um arquivo '.env'. Nela configure as seguintes va
 - EMAIL_USER=seu_email@gmail.com
 - EMAIL_APP_PASSWORD=senha do app gmail
 
-Email_app_password deve ser uma senha de app criada pelo gmail(myaccount.google > procure por Senha de App > crie uma nova senha de app). Essa senha não será compartilhada com o sistema.
+EMAIL_APP_PASSWORD deve ser uma senha de app criada pelo gmail(myaccount.google > procure por Senha de App > crie uma nova senha de app). Essa senha não será compartilhada com o sistema.
+
+O email utilizado no EMAIL_USER deve possuir verificação de dois fatores, por exigência do Google Gmail.
 
 Rodar o servidor na máquina(Windows):
 
